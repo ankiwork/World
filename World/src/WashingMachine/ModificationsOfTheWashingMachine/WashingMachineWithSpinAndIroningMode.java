@@ -19,15 +19,15 @@ public class WashingMachineWithSpinAndIroningMode extends DefaultWashingMachine 
     }
 
     // Constructor with parameters
-    public WashingMachineWithSpinAndIroningMode(String manufacturer, String washingMode, String typeOfPowder, String typeOfConditioner, String spinMode, String ironingMode) {
-        super(manufacturer, washingMode, typeOfPowder, typeOfConditioner);
+    public WashingMachineWithSpinAndIroningMode(String washingMode, String typeOfPowder, String typeOfConditioner, String spinMode, String ironingMode) {
+        super(washingMode, typeOfPowder, typeOfConditioner);
         this.spinMode    = spinMode;
         this.ironingMode = ironingMode;
     }
 
     // Loading the washing machine with default settings
     public void loadWashingMachineWithSpinAndIroningMode(WashingMachineWithSpinAndIroningMode washingMachineWithSpinAndIroningMode) {
-        washingMachineWithSpinAndIroningMode.loadDefaultWashingMachine(washingMachineWithSpinAndIroningMode);
+        washingMachineWithSpinAndIroningMode.loadDefaultWashingMachineAutomatically(washingMachineWithSpinAndIroningMode);
         washingMachineWithSpinAndIroningMode.spinMode    = "Enabled";
         washingMachineWithSpinAndIroningMode.ironingMode = "Disabled";
     }
