@@ -9,18 +9,26 @@ import WashingMachine.ModificationsOfTheWashingMachine.WashingMachineWithSpinAnd
 
 public class World {
 
-    // Default [STRING] value
-    public static final String DEFAULT_STRING = "Default";
-    
-    static int number = 0;
+    // Writing data to a file
+    private static FileWriter getFileWriter(int position, WashingMachineWithSpinAndIroningMode[] washingMachines) throws IOException {
+
+        FileWriter writer = new FileWriter("Data.txt");
+
+        for (int i = 0; i < position; i++) {
+            writer.write(washingMachines[i].getWashingMode()       + "\n");
+            writer.write(washingMachines[i].getTypeOfPowder()      + "\n");
+            writer.write(washingMachines[i].getTypeOfConditioner() + "\n");
+            writer.write(washingMachines[i].getSpinMode()          + "\n");
+            writer.write(washingMachines[i].getIroningMode()       + "\n");
+        }
+        return writer;
+    }
 
     public static void main(String[] argv) throws IOException {
 
-        String washingMode       = DEFAULT_STRING;
-        String typeOfPowder      = DEFAULT_STRING;
-        String typeOfConditioner = DEFAULT_STRING;
-        String spinMode          = DEFAULT_STRING;
-        String ironingMode       = DEFAULT_STRING;
+        // Temporary storage for 100 objects with a counter[POSITION]
+        WashingMachineWithSpinAndIroningMode[] washingMachines = new WashingMachineWithSpinAndIroningMode[100];
+        int position = 0;
 
         Scanner scanner = new Scanner(System.in);
 
@@ -57,37 +65,262 @@ public class World {
                     System.out.print("\nWashing machine [BEFORE] filling via load method:\n");
                     washingMachineLoad.outputWashingMachineWithSpinAndIroningModeInformation(washingMachineLoad);
 
-                    washingMachineLoad.loadWashingMachineWithSpinAndIroningMode(washingMachineLoad);
+                    washingMachineLoad.loadWashingMachineWithSpinAndIroningModeAutomatically(washingMachineLoad);
 
                     System.out.print("\nWashing machine [AFTER] filling via load method:\n");
                     washingMachineLoad.outputWashingMachineWithSpinAndIroningModeInformation(washingMachineLoad);
 
+                    washingMachines[position] = washingMachineLoad;
+                    position++;
+
                     break;
                 }
 
-                // Load the washing machine manually
+                // We implement manual loading of the washing machine.
                 case 3: {
 
-                    System.out.print("\nFilling the washing machine manually:\n");
+                    WashingMachineWithSpinAndIroningMode washingMachineManuallyLoad = new WashingMachineWithSpinAndIroningMode();
 
-                    System.out.print("     Enter washing mode:          ");
-                    washingMode = scanner.nextLine();
+                    // We display information about the user's location in the washing mode selection menu.
+                    System.out.print("\nYou are in the washing mode selection mode.\n");
 
-                    System.out.print("     Enter type of powder:        ");
-                    typeOfPowder = scanner.nextLine();
+                    // We display all modes on the screen.
+                    System.out.print("     [1] - Sport.\n");
+                    System.out.print("     [2] - Short.\n");
+                    System.out.print("     [3] - Cotton.\n");
+                    System.out.print("     [4] - Standard.\n");
 
-                    System.out.print("     Enter type of conditioner:   ");
-                    typeOfConditioner = scanner.nextLine();
+                    // We show a message about the request to enter the mode number.
+                    System.out.print("Select the washing mode: ");
 
-                    System.out.print("     Enter washing mode:          ");
-                    spinMode = scanner.nextLine();
+                    // Enter the number of the washing mode.
+                    int mode = scanner.nextInt();
 
-                    System.out.print("     Enter washing mode:          ");
-                    ironingMode = scanner.nextLine();
+                    // We implement the choice of washing mode.
+                    switch (mode) {
 
-                    WashingMachineWithSpinAndIroningMode washingMachineData = new WashingMachineWithSpinAndIroningMode(washingMode, typeOfPowder, typeOfConditioner, spinMode, ironingMode);
+                        // Sport.
+                        case 1: {
 
-                    break;
+                            // We display information about the user's location in the washing mode selection menu.
+                            System.out.print("\nYou are in the washing mode selection mode.\n");
+
+                            // We display all modes on the screen.
+                            System.out.print("          [1] - Sport intensive 30 degrees.\n");
+                            System.out.print("          [2] - Sport 30 degrees.\n");
+                            System.out.print("          [3] - Sports shoes 30 degrees .\n");
+
+                            // We show a message about the request to enter the mode number.
+                            System.out.print("Select the washing mode: ");
+
+                            // Enter the number of the washing mode.
+                            mode = scanner.nextInt();
+
+                            // Sport.
+                            switch (mode) {
+
+                                // Sport intensive 30 degrees.
+                                case 1: {
+
+                                    washingMachineManuallyLoad.setWashingModeDRY(washingMachineManuallyLoad, washingMachineManuallyLoad.getSportIntensive(), washingMachineManuallyLoad.getDefaultThirty());
+
+                                    break;
+                                }
+
+                                // Sport 30 degrees.
+                                case 2: {
+
+                                    washingMachineManuallyLoad.setWashingModeDRY(washingMachineManuallyLoad, washingMachineManuallyLoad.getSport(), washingMachineManuallyLoad.getDefaultThirty());
+
+                                    break;
+                                }
+
+                                // Sports shoes 30 degrees.
+                                case 3: {
+
+                                    washingMachineManuallyLoad.setWashingModeDRY(washingMachineManuallyLoad, washingMachineManuallyLoad.getSportShoes(), washingMachineManuallyLoad.getDefaultThirty());
+
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+
+                        // Short.
+                        case 2: {
+
+                            // We display information about the user's location in the washing mode selection menu.
+                            System.out.print("\nYou are in the washing mode selection mode.\n");
+
+                            // We display all modes on the screen.
+                            System.out.print("          [1] - Spin.\n");
+                            System.out.print("          [2] - Rinsing.\n");
+                            System.out.print("          [3] - Draining without pressing.\n");
+
+                            // We show a message about the request to enter the mode number.
+                            System.out.print("Select the washing mode: ");
+
+                            // Enter the number of the washing mode.
+                            mode = scanner.nextInt();
+
+                            // Sport.
+                            switch (mode) {
+
+                                // Spin.
+                                case 1: {
+
+                                    washingMachineManuallyLoad.setWashingModeDRY(washingMachineManuallyLoad, washingMachineManuallyLoad.getSpin(), washingMachineManuallyLoad.getDefaultZero());
+
+                                    break;
+                                }
+
+                                // Rinsing.
+                                case 2: {
+
+                                    washingMachineManuallyLoad.setWashingModeDRY(washingMachineManuallyLoad, washingMachineManuallyLoad.getRinsing(), washingMachineManuallyLoad.getDefaultZero());
+
+                                    break;
+                                }
+
+                                // Draining without pressing.
+                                case 3: {
+
+                                    washingMachineManuallyLoad.setWashingModeDRY(washingMachineManuallyLoad, washingMachineManuallyLoad.getDrainingPressing(), washingMachineManuallyLoad.getDefaultZero());
+
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+
+                        // Cotton.
+                        case 3: {
+
+                            // We display information about the user's location in the washing mode selection menu.
+                            System.out.print("\nYou are in the washing mode selection mode.\n");
+
+                            // We display all modes on the screen.
+                            System.out.print("          [1] - Cotton: washing with soaking 90 degrees.\n");
+                            System.out.print("          [2] - Cotton: intensive washing 90 degrees.\n");
+                            System.out.print("          [3] - Cotton: 60 degrees.\n");
+                            System.out.print("          [4] - Cotton: gentle washing 60 degrees.\n");
+                            System.out.print("          [5] - Synthetic: intensive washing 60 degrees.\n");
+                            System.out.print("          [6] - Synthetic: gentle washing 40 degrees.\n");
+
+                            // We show a message about the request to enter the mode number.
+                            System.out.print("Select the washing mode: ");
+
+                            // Enter the number of the washing mode.
+                            mode = scanner.nextInt();
+
+                            // Cotton.
+                            switch (mode) {
+
+                                // Cotton: washing with soaking 90 degrees.
+                                case 1: {
+
+                                    washingMachineManuallyLoad.setWashingModeDRY(washingMachineManuallyLoad, washingMachineManuallyLoad.getCottonWashingSoaking(), washingMachineManuallyLoad.getDefaultNinety());
+
+                                    break;
+                                }
+
+                                // Cotton: intensive washing 90 degrees.
+                                case 2: {
+
+                                    washingMachineManuallyLoad.setWashingModeDRY(washingMachineManuallyLoad, washingMachineManuallyLoad.getCottonIntensiveWashing(), washingMachineManuallyLoad.getDefaultNinety());
+
+                                    break;
+                                }
+
+                                // Cotton: 60 degrees.
+                                case 3: {
+
+                                    washingMachineManuallyLoad.setWashingModeDRY(washingMachineManuallyLoad, washingMachineManuallyLoad.getCottonSixty(), washingMachineManuallyLoad.getDefaultSixty());
+
+                                    break;
+                                }
+
+                                // Cotton: gentle washing 60 degrees.
+                                case 4: {
+
+                                    washingMachineManuallyLoad.setWashingModeDRY(washingMachineManuallyLoad, washingMachineManuallyLoad.getCottonGentleWashing(), washingMachineManuallyLoad.getDefaultSixty());
+
+                                    break;
+                                }
+
+                                // Synthetic: intensive washing 60 degrees.
+                                case 5: {
+
+                                    washingMachineManuallyLoad.setWashingModeDRY(washingMachineManuallyLoad, washingMachineManuallyLoad.getSyntheticIntensiveWashing(), washingMachineManuallyLoad.getDefaultSixty());
+
+                                    break;
+                                }
+
+                                // Synthetic: gentle washing 40 degrees.
+                                case 6: {
+
+                                    washingMachineManuallyLoad.setWashingModeDRY(washingMachineManuallyLoad, washingMachineManuallyLoad.getSyntheticGentleWashing(), washingMachineManuallyLoad.getDefaultForty());
+
+                                    break;
+                                }
+                            } break;
+                        }
+
+                        // Special.
+                        case 4: {
+
+                            // We display information about the user's location in the washing mode selection menu.
+                            System.out.print("\nYou are in the washing mode selection mode.\n");
+
+                            // We display all modes on the screen.
+                            System.out.print("          [1] - Wool 40 degrees.\n");
+                            System.out.print("          [2] - Silk 30 degrees.\n");
+                            System.out.print("          [3] - Jeans 40 degrees.\n");
+                            System.out.print("          [4] - Express 15 degrees.\n");
+
+                            // We show a message about the request to enter the mode number.
+                            System.out.print("Select the washing mode: ");
+
+                            // Enter the number of the washing mode.
+                            mode = scanner.nextInt();
+
+                            // Special.
+                            switch(mode) {
+
+                                // Wool 40 degrees.
+                                case 1: {
+
+                                    washingMachineManuallyLoad.setWashingModeDRY(washingMachineManuallyLoad, washingMachineManuallyLoad.getWool(), washingMachineManuallyLoad.getDefaultForty());
+
+                                    break;
+                                }
+
+                                // Silk 30 degrees.
+                                case 2: {
+
+                                    washingMachineManuallyLoad.setWashingModeDRY(washingMachineManuallyLoad, washingMachineManuallyLoad.getSilk(), washingMachineManuallyLoad.getDefaultThirty());
+
+                                    break;
+                                }
+
+                                // Jeans 40 degrees.
+                                case 3: {
+
+                                    washingMachineManuallyLoad.setWashingModeDRY(washingMachineManuallyLoad, washingMachineManuallyLoad.getJeans(), washingMachineManuallyLoad.getDefaultForty());
+
+                                    break;
+                                }
+
+                                // Express 15 degrees.
+                                case 4: {
+
+                                    washingMachineManuallyLoad.setWashingModeDRY(washingMachineManuallyLoad, washingMachineManuallyLoad.getExpress(), washingMachineManuallyLoad.getDefaultFifteen());
+
+                                    break;
+                                }
+                            } break;
+                        }
+                    } washingMachines[position] = washingMachineManuallyLoad; position++; break;
                 }
 
                 // Read data from file
@@ -104,20 +337,12 @@ public class World {
                     if (file.createNewFile()) { System.out.print("\nThe file was not in the system, the creation of a new one was initialized\n"); }
                     else { System.out.print("\nThe initialized data recording operation was initialized\n"); }
 
-                    FileWriter writer = new FileWriter("Data.txt");
-
-                    writer.write(number            + "\n");
-                    writer.write(washingMode       + "\n");
-                    writer.write(typeOfPowder      + "\n");
-                    writer.write(typeOfConditioner + "\n");
-                    writer.write(spinMode          + "\n");
-                    writer.write(ironingMode       + "\n");
-                    writer.write(                    "\n");
+                    FileWriter writer = getFileWriter(position, washingMachines);
 
                     writer.close();
 
                     System.out.print("Data recording complete\n");
-                    
+
                     break;
                 }
             }
