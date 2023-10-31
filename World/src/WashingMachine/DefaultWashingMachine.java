@@ -12,11 +12,17 @@ public abstract class DefaultWashingMachine extends World {
     public String getWashingMode() {
         return washingMode;
     }
+    public void setWashingMode(String washingMode) {
+        this.washingMode = washingMode;
+    }
 
     // Washing temperature
     private String washingTemperature;
     public String getWashingTemperature() {
         return washingTemperature;
+    }
+    public void setWashingTemperature(String washingTemperature) {
+        this.washingTemperature = washingTemperature;
     }
 
     // Type of powder
@@ -24,11 +30,17 @@ public abstract class DefaultWashingMachine extends World {
     public String getTypeOfPowder() {
         return typeOfPowder;
     }
+    public void setTypeOfPowder(String typeOfPowder) {
+        this.typeOfPowder = typeOfPowder;
+    }
 
     // Type of conditioner
     private String typeOfConditioner;
     public String getTypeOfConditioner() {
         return typeOfConditioner;
+    }
+    public void setTypeOfConditioner(String typeOfConditioner) {
+        this.typeOfConditioner = typeOfConditioner;
     }
 
     // Default constructor
@@ -50,9 +62,9 @@ public abstract class DefaultWashingMachine extends World {
     // Loading the washing machine with default settings
     public void loadDefaultWashingMachineAutomatically(DefaultWashingMachine defaultWashingMachine) {
         defaultWashingMachine.washingMode        = getCottonWashingSoaking();
-        defaultWashingMachine.washingTemperature = getWashingTemperature();
-        defaultWashingMachine.typeOfPowder       = "DEVELOPMENT";
-        defaultWashingMachine.typeOfConditioner  = "DEVELOPMENT";
+        defaultWashingMachine.washingTemperature = getDefaultNinety();
+        defaultWashingMachine.typeOfPowder       = getHypoallergenic();
+        defaultWashingMachine.typeOfConditioner  = getThickening();
     }
 
     // We display information about the object in a convenient format
@@ -61,6 +73,44 @@ public abstract class DefaultWashingMachine extends World {
         System.out.println("     Washing temperature | " + defaultWashingMachine.getWashingTemperature());
         System.out.println("     Type of powder      | " + defaultWashingMachine.getTypeOfPowder());
         System.out.println("     Type of conditioner | " + defaultWashingMachine.getTypeOfConditioner());
+    }
+
+    // We display information about the object in a convenient format
+    public void outputDefaultWashingMachineInformationAll(DefaultWashingMachine[] defaultWashingMachine, int position) {
+        System.out.println("     Washing mode        | " + defaultWashingMachine[position].getWashingMode());
+        System.out.println("     Washing temperature | " + defaultWashingMachine[position].getWashingTemperature());
+        System.out.println("     Type of powder      | " + defaultWashingMachine[position].getTypeOfPowder());
+        System.out.println("     Type of conditioner | " + defaultWashingMachine[position].getTypeOfConditioner());
+    }
+
+    // Creating a default variable for all washing modes using a temperature of 0 degrees.
+    public final String getDefaultZero() {
+        return "0";
+    }
+
+    // Creating a default variable for all washing modes using a temperature of 15 degrees.
+    public final String getDefaultFifteen() {
+        return "15";
+    }
+
+    // Creating a default variable for all washing modes using a temperature of 30 degrees.
+    public final String getDefaultThirty() {
+        return "30";
+    }
+
+    // Creating a default variable for all washing modes using a temperature of 40 degrees.
+    public final String getDefaultForty() {
+        return "40";
+    }
+
+    // Creating a default variable for all washing modes using a temperature of 60 degrees.
+    public final String getDefaultSixty() {
+        return "60";
+    }
+
+    // Creating a default variable for all washing modes using a temperature of 90 degrees.
+    public final String getDefaultNinety() {
+        return "90";
     }
 
     // Washing mode
@@ -79,16 +129,6 @@ public abstract class DefaultWashingMachine extends World {
     // =========================================================================================================================
     // | Synthetics: gentle washing 40 degrees   |                    |                            |                           |
     // =========================================================================================================================
-
-    // We create a function so as not to repeat the logic of the code 100 times, from the principles of don't repeat yourself.
-    public void setWashingModeDRY(DefaultWashingMachine washingMachine, String defaultWashingMachineMode, String defaultWashingMachineTemperature) {
-
-        // We set the final washing mode.
-        this.washingMode = defaultWashingMachineMode;
-
-        // We set the final washing temperature.
-        this.washingTemperature = defaultWashingMachineTemperature;
-    }
 
     // Cotton: washing with soaking 90 degrees.
     public String getCottonWashingSoaking() {
@@ -170,34 +210,14 @@ public abstract class DefaultWashingMachine extends World {
         return "Draining without pressing";
     }
 
-    // Creating a default variable for all washing modes using a temperature of 0 degrees.
-    public final String getDefaultZero() {
-        return "0";
-    }
+    // We create a function so as not to repeat the logic of the code 100 times, from the principles of don't repeat yourself.
+    public void setWashingModeDRY(DefaultWashingMachine washingMachine, String defaultWashingMachineMode, String defaultWashingMachineTemperature) {
 
-    // Creating a default variable for all washing modes using a temperature of 15 degrees.
-    public final String getDefaultFifteen() {
-        return "15";
-    }
+        // We set the final washing mode.
+        this.washingMode = defaultWashingMachineMode;
 
-    // Creating a default variable for all washing modes using a temperature of 30 degrees.
-    public final String getDefaultThirty() {
-        return "30";
-    }
-
-    // Creating a default variable for all washing modes using a temperature of 40 degrees.
-    public final String getDefaultForty() {
-        return "40";
-    }
-
-    // Creating a default variable for all washing modes using a temperature of 60 degrees.
-    public final String getDefaultSixty() {
-        return "60";
-    }
-
-    // Creating a default variable for all washing modes using a temperature of 90 degrees.
-    public final String getDefaultNinety() {
-        return "90";
+        // We set the final washing temperature.
+        this.washingTemperature = defaultWashingMachineTemperature;
     }
 
     // Type of powder
@@ -236,5 +256,43 @@ public abstract class DefaultWashingMachine extends World {
     // Plates
     public final String getPlates() {
         return "Plates";
+    }
+
+    // Type of conditioner
+    // ==================
+    // | Thickening     |
+    // ==================
+    // | Deep           |
+    // ==================
+    // | Cream          |
+    // ==================
+    // | Protein        |
+    // ==================
+    // | Moisturizing   |
+    // ==================
+
+    // Thickening
+    public final String getThickening() {
+        return "Thickening";
+    }
+
+    // Deep
+    public final String getDeep() {
+        return "Deep";
+    }
+
+    // Cream
+    public final String getCream() {
+        return "Cream";
+    }
+
+    // Protein
+    public final String getProtein() {
+        return "Protein";
+    }
+
+    // Moisturizing
+    public final String getMoisturizing() {
+        return "Moisturizing";
     }
 }
