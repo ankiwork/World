@@ -6,25 +6,10 @@ import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.BufferedReader;
 
-import WashingMachine.ModificationsOfTheWashingMachine.WashingMachineWithSpinAndIroningMode;
+import Source.WriteFile;
+import World.WashingMachine.WashingMachineWithSpinAndIroningMode;
 
 public class World {
-
-    // Writing data to a file
-    private static FileWriter getFileWriter(WashingMachineWithSpinAndIroningMode[] washingMachines, int position) throws IOException {
-
-        FileWriter writer = new FileWriter("Data.txt");
-
-        for (int i = 0; i < position; i++) {
-            writer.write(washingMachines[i].getWashingMode()        + "\n");
-            writer.write(washingMachines[i].getWashingTemperature() + "\n");
-            writer.write(washingMachines[i].getTypeOfPowder()       + "\n");
-            writer.write(washingMachines[i].getTypeOfConditioner()  + "\n");
-            writer.write(washingMachines[i].getSpinMode()           + "\n");
-            writer.write(washingMachines[i].getIroningMode()        + "\n");
-        }
-        return writer;
-    }
 
     public static void main(String[] argv) throws IOException {
 
@@ -43,28 +28,8 @@ public class World {
             System.out.println("Data detected, reading complete");
 
             // Reading parameters and applying to code
-            BufferedReader settingsReader = new BufferedReader(new FileReader("Settings.txt"));
-            String settingsLine = settingsReader.readLine();
-
-
-
-            // Считать файл
-
-
-
-
+            BufferedReader settingsReader = getBufferedReader();
             settingsReader.close();
-
-
-
-
-
-
-            // Применить настройки, скорее всего через свитч, думаю проще будет
-
-
-
-
 
             // Temporary storage for 100 objects with a counter[POSITION]
             WashingMachineWithSpinAndIroningMode[] washingMachines = new WashingMachineWithSpinAndIroningMode[100];
@@ -641,10 +606,7 @@ public class World {
                                         break;
                                     }
                                 } dataLine = dataReader.readLine();
-                            }
-
-
-                            washingMachines[position] = washingMachineDataRead; position++;
+                            } washingMachines[position] = washingMachineDataRead; position++;
                         } dataReader.close();
 
                         // Display a message to the user when data reading is complete
@@ -663,7 +625,7 @@ public class World {
                         if (file.createNewFile()) { System.out.print("\nThe file was not in the system, the creation of a new one was initialized\n"); }
                         else { System.out.print("\nThe initialized data recording operation was initialized\n"); }
 
-                        FileWriter writer = getFileWriter(washingMachines, position);
+                        FileWriter writer = WriteFile.getFileWriter(washingMachines, position);
                         writer.close();
 
                         System.out.print("Data recording complete\n\n");
@@ -673,5 +635,73 @@ public class World {
                 }
             } scanner.close();
         }
+    }
+
+    private static BufferedReader getBufferedReader() throws IOException {
+        BufferedReader settingsReader = new BufferedReader(new FileReader("Settings.txt"));
+        String settingsLine = settingsReader.readLine();
+
+        // Reading data to a file, while not null
+        while (settingsLine != null) {
+
+            WashingMachineWithSpinAndIroningMode washingMachineDataRead = new WashingMachineWithSpinAndIroningMode();
+
+            // Loop for one object
+            for (int i = 0; i < 6; i++) {
+
+                // Washing machine
+                switch (i) {
+
+                    // Name
+                    case 0: {
+
+
+
+                        break;
+                    }
+
+                    // Password
+                    case 1: {
+
+
+
+                        break;
+                    }
+
+                    // Root/User
+                    case 2: {
+
+
+
+                        break;
+                    }
+
+                    // "Debug": true/false
+                    case 3: {
+
+
+
+                        break;
+                    }
+
+                    // "Autotests": true/false
+                    case 4: {
+
+
+
+                        break;
+                    }
+
+                    // Ironing mode
+                    case 5: {
+
+
+
+                        break;
+                    }
+                } settingsLine = settingsReader.readLine();
+            }
+        }
+        return settingsReader;
     }
 }
