@@ -20,6 +20,24 @@ public class InternetUser extends DefaultHuman {
         this.status = status;
     }
 
+    // User internet debug
+    private String debug;
+    public String getDebug() {
+        return debug;
+    }
+    public void setDebug(String debug) {
+        this.debug = debug;
+    }
+
+    // User internet autotests
+    private String autotest;
+    public String getAutotest() {
+        return autotest;
+    }
+    public void setAutotest(String autotests) {
+        this.autotest = autotests;
+    }
+
     // Default constructor
     public InternetUser() {
         password = DEFAULT_STRING;
@@ -32,4 +50,10 @@ public class InternetUser extends DefaultHuman {
         this.password = password;
         this.status = status;
     }
+
+    // Debug mode: True
+    public String getDebugModeTrue() { return "True"; }
+
+    // Debug mode: False
+    public String getDebugModeFalse() { return "False"; }
 }

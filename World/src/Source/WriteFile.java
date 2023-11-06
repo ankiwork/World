@@ -22,4 +22,103 @@ public class WriteFile {
         }
         return writer;
     }
+
+    // Starting the program
+    public static FileWriter getStartingTheProgram() throws IOException {
+
+        FileWriter writer = new FileWriter("Logs.txt", true);
+
+        java.time.LocalDateTime currentDateTime = java.time.LocalDateTime.now();
+        writer.write(currentDateTime + ": Starting the program\n");
+
+        return writer;
+    }
+
+    // Quit the application
+    public static FileWriter getQuitTheApplication() throws IOException {
+
+        FileWriter writer = new FileWriter("Logs.txt", true);
+
+        java.time.LocalDateTime currentDateTime = java.time.LocalDateTime.now();
+        writer.write(currentDateTime + ": End the program\n");
+
+        return writer;
+    }
+
+    // Testing the Load method
+    public static FileWriter getTestingTheLoadMethod() throws IOException {
+
+        FileWriter writer = new FileWriter("Logs.txt", true);
+
+        java.time.LocalDateTime currentDateTime = java.time.LocalDateTime.now();
+        writer.write(currentDateTime + ": Testing the Load method\n");
+
+        return writer;
+    }
+
+    // We implement manual loading of the washing machine
+    public static FileWriter getImplementManualLoadingOfTheWashingMachine() throws IOException {
+
+        FileWriter writer = new FileWriter("Logs.txt", true);
+
+        java.time.LocalDateTime currentDateTime = java.time.LocalDateTime.now();
+        writer.write(currentDateTime + ": Implement manual loading of the washing machine\n");
+
+        return writer;
+    }
+
+    // We display all objects on the screen to the user
+    public static FileWriter getDisplayAllObjectsOnTheScreenToTheUser() throws IOException {
+
+        FileWriter writer = new FileWriter("Logs.txt", true);
+
+        java.time.LocalDateTime currentDateTime = java.time.LocalDateTime.now();
+        writer.write(currentDateTime + ": Display all objects on the screen to the user\n");
+
+        return writer;
+    }
+
+    // Read data from file
+    public static FileWriter getReadDataFromFile() throws IOException {
+
+        FileWriter writer = new FileWriter("Logs.txt", true);
+
+        java.time.LocalDateTime currentDateTime = java.time.LocalDateTime.now();
+        writer.write(currentDateTime + ": Read data from file\n");
+
+        return writer;
+    }
+
+    // Writing data to a file
+    public static FileWriter getWritingDataToAFile() throws IOException {
+
+        FileWriter writer = new FileWriter("Logs.txt", true);
+
+        java.time.LocalDateTime currentDateTime = java.time.LocalDateTime.now();
+        writer.write(currentDateTime + ": Writing data to a file\n");
+
+        return writer;
+    }
+
+    // Select debug mode
+    public static FileWriter getSelectDebugMode() throws IOException {
+
+        FileWriter writer = new FileWriter("Logs.txt", true);
+
+        java.time.LocalDateTime currentDateTime = java.time.LocalDateTime.now();
+        writer.write(currentDateTime + ": Select debug mode\n");
+
+        return writer;
+    }
+
+    // Select autotest mode
+    public static FileWriter getSelectAutotestMode() throws IOException {
+
+        FileWriter writer = new FileWriter("Logs.txt", true);
+
+        java.time.LocalDateTime currentDateTime = java.time.LocalDateTime.now();
+        writer.write(currentDateTime + ": Select autotest mode\n");
+
+        return writer;
+    }
 }
