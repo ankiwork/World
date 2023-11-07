@@ -651,6 +651,11 @@ public class World {
                     // Read data from file
                     case 5: {
 
+                        File file = new File("Data.txt");
+
+                        if (file.createNewFile()) { System.out.print("\nThe file was not in the system and was created automatically, fill it with settings\n"); }
+                        else { System.out.println("\nThe file has been successfully opened, checking for non-emptiness has begun"); }
+
                         if(Objects.equals(user.getDebug(), "True")) {
 
                             FileWriter writer = WriteFile.getReadDataFromFile();
